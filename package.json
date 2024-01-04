@@ -9,13 +9,13 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
-    "prettify": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,}'",
+    "prettify": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "preview": "vite preview",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json}": [
+    "*.{js,jsx,ts,tsx}": [
       "npm run lint --",
       "prettier --write",
       "git add"

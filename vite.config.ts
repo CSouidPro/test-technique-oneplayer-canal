@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
-import reactRefresh from 'vite-plugin-eslint';
-import eslintPlugin from 'vite-plugin-eslint';
+import { defineConfig } from 'vite'
+import reactRefresh from 'vite-plugin-eslint'
+import eslintPlugin from 'vite-plugin-eslint'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,4 +13,4 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-});
+})
