@@ -5,16 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CurrentTime from '../components/CurrentTime'
 import ProgressBar from '../components/ProgressBar'
 import FullScreenButton from '../components/FullScreenButton'
-import { Reaction } from '../models/Scene'
 
 const ControlBar = ({
   player,
   playerState,
-  reactions,
 }: {
   player: RxPlayer
   playerState: string
-  reactions: Reaction[]
 }) => {
   const [isPaused, setIsPaused] = useState(true)
 
@@ -40,7 +37,7 @@ const ControlBar = ({
 
   return (
     <div>
-      <ProgressBar player={player} reactions={reactions} />
+      <ProgressBar player={player} />
       <div className="p-6 flex justify-between bg-black">
         <div className="flex items-start">
           {isPaused && (

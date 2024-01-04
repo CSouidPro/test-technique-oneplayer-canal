@@ -13,7 +13,18 @@ Test technique OnePlayer for Canal+ Tech
 
 - N’hésite pas à nous faire part de tes choix dans un fichier README
 
-# Choix technique
+# Lancer le projet
+- npm install && npm run dev
 
-- Création du projet en utilisant Vite
+# Choix techniques
+
+- Création du projet en utilisant Vite => J'avais commencé avec create-react-app mais j'étais curieux d'utiliser Vite
 - Ajout de prettier et eslint pour assurer une qualité de code
+- Ajout de husky pour améliorer mes commits
+- Ajout de tailwind pour la partie CSS
+
+# Axes d'amélioration/Reste à faire
+- Amélioration performances chargement des détails d'une scène
+- Plus de tests unitaires => j'ai eu quelques difficultés à mock le rx-player
+- Revoir les bonnes pratiques sur les composants en ReactJs
+- UX/UI

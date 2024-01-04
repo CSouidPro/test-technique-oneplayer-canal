@@ -5,7 +5,7 @@ import ChapterBar from './ChapterBar'
 import ControlBar from './ControlBar'
 import CrewMemberBar from './CrewMemberBar'
 
-import { DetailedScene, Reaction, Scene } from '../models/Scene'
+import { DetailedScene, Scene } from '../models/Scene'
 
 const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
   const videoRef = useRef(null)
@@ -13,7 +13,6 @@ const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
 
   const [playerState, setPlayerState] = useState('')
   const [scenes, setScenes] = useState<DetailedScene[]>([])
-  const [reactions, setReactions] = useState<Reaction[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -39,13 +38,7 @@ const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
         // Wait for all merged scenes to be fetched
         const mergedScenes = await Promise.all(mergedScenesPromises)
 
-        // Extract reactions from the array of merged scenes
-        const allReactions = mergedScenes
-          .flatMap((mergedScene) => mergedScene.reactions)
-          .filter((reaction) => reaction !== undefined)
-
         setScenes(mergedScenes)
-        setReactions(allReactions)
         setLoading(false)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -90,11 +83,7 @@ const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
   return (
     <div className="max-w-80 m-auto">
       <video className="w-full text-center" ref={videoRef} controls={false} />
-      <ControlBar
-        player={playerRef.current}
-        playerState={playerState}
-        reactions={reactions}
-      />
+      <ControlBar player={playerRef.current} playerState={playerState} />
       <ChapterBar
         player={playerRef.current}
         scenes={scenes}
