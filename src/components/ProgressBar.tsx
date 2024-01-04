@@ -34,7 +34,7 @@ const ProgressBar = ({
   useEffect(() => {
     if (reactions.length) {
       console.log(reactions)
-      setDisplayReactions(true);
+      setDisplayReactions(true)
     }
   }, [reactions])
 
@@ -61,21 +61,23 @@ const ProgressBar = ({
           style={{ width: `${progress}%` }}
         />
       </div>
-      {displayReactions && reactions.map((reaction: Reaction, index) => {
-        const markerPosition = (reaction.timecode / player.getVideoDuration()) * 100;
-        return (
-          <div
-            key={index}
-            className="absolute top-0 -mt-1"
-            style={{ left: `${markerPosition}%` }}
-          >
+      {displayReactions &&
+        reactions.map((reaction: Reaction, index) => {
+          const markerPosition =
+            (reaction.timecode / player.getVideoDuration()) * 100
+          return (
             <div
-              className="w-3 h-3 bg-red-500 rounded-full cursor-pointer"
-              title={`${reaction.name}: ${reaction.message}`}
-            />
-          </div>
-        );
-      })}
+              key={index}
+              className="absolute top-0 -mt-1"
+              style={{ left: `${markerPosition}%` }}
+            >
+              <div
+                className="w-3 h-3 bg-red-500 rounded-full cursor-pointer"
+                title={`${reaction.name}: ${reaction.message}`}
+              />
+            </div>
+          )
+        })}
     </div>
   )
 }

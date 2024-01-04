@@ -1,16 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 import RxPlayer from 'rx-player'
 
+import ChapterBar from './ChapterBar'
 import ControlBar from './ControlBar'
+import CrewMemberBar from './CrewMemberBar'
 
-import { Reaction, Scene } from '../models/Scene'
+import { DetailedScene, Reaction, Scene } from '../models/Scene'
 
 const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
   const videoRef = useRef(null)
   const playerRef = useRef(null as unknown as RxPlayer)
 
   const [playerState, setPlayerState] = useState('')
+  const [scenes, setScenes] = useState<DetailedScene[]>([])
   const [reactions, setReactions] = useState<Reaction[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,9 +40,9 @@ const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
         const mergedScenes = await Promise.all(mergedScenesPromises)
 
         // Extract reactions from the array of merged scenes
-        const allReactions = mergedScenes.flatMap(
-          (mergedScene) => mergedScene.reactions
-        ).filter(reaction => reaction !== undefined);
+        const allReactions = mergedScenes
+          .flatMap((mergedScene) => mergedScene.reactions)
+          .filter((reaction) => reaction !== undefined)
 
         setScenes(mergedScenes)
         setReactions(allReactions)
@@ -91,6 +95,12 @@ const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
         playerState={playerState}
         reactions={reactions}
       />
+      <ChapterBar
+        player={playerRef.current}
+        scenes={scenes}
+        loading={loading}
+      />
+      <CrewMemberBar />
     </div>
   )
 }
